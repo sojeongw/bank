@@ -4,9 +4,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.time.LocalDate;
 import java.time.Month;
-import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 public class BankTransactionAnalyzerSimple {
@@ -14,23 +13,14 @@ public class BankTransactionAnalyzerSimple {
   private static final String RESOURCES = "src/main/resources/";
 
   public static void main(String[] args) throws IOException {
+    final BankStatementCSVParser bankStatementParser = new BankStatementCSVParser();
     final String fileName = "bank-data-simple.csv";
     final Path path = Paths.get(RESOURCES + fileName);
     final List<String> lines = Files.readAllLines(path);
 
-    double total = 0d;
-    final DateTimeFormatter DATE_PATTERN = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    final List<BankTransaction> bankTransactions = bankStatementParser.parseLinesFromCSV(lines);
 
-    for (final String line : lines) {
-      final String[] columns = line.split(",");
-      final LocalDate date = LocalDate.parse(columns[0], DATE_PATTERN);
-
-      if (date.getMonth() == Month.JANUARY) {
-        final double amount = Double.parseDouble(columns[1]);
-        total += amount;
-      }
-    }
-
-    System.out.println("total in January = " + total);
+    System.out.println("The total for all transaction is " + calculateTotalAmount(bankTransactions));
+    System.out.println("The total for transaction in January " + selectInMonth(bankTransactions, Month.JANUARY));
   }
 }
