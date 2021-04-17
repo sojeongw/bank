@@ -19,6 +19,8 @@ public class BankStatementAnalyzer {
     final List<BankTransaction> bankTransactions = bankStatementParser.parseLinesFrom(lines);
     final BankStatementProcessor bankStatementProcessor = new BankStatementProcessor(bankTransactions);
 
+    final List<BankTransaction> transactions = bankStatementProcessor.findTransactions(new BankTransactionIsInFebruaryAndExpensive());
+
     collectSummary(bankStatementProcessor);
   }
 
