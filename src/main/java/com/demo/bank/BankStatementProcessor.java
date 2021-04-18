@@ -12,6 +12,16 @@ public class BankStatementProcessor {
     this.bankTransactions = bankTransactions;
   }
 
+  public double summarizeTransactions(final BankTransactionSummarizer bankTransactionSummarizer) {
+    double result = 0;
+
+    for (final BankTransaction bankTransaction : bankTransactions) {
+      result = bankTransactionSummarizer.summarize(result, bankTransaction);
+    }
+
+    return result;
+  }
+
   public double calculateTotalAmount() {
     double total = 0d;
 
@@ -23,15 +33,8 @@ public class BankStatementProcessor {
   }
 
   public double calculateTotalInMonth(final Month month) {
-    double total = 0;
-
-    for (final BankTransaction bankTransaction : bankTransactions) {
-      if (bankTransaction.getDate().getMonth() == month) {
-        total += bankTransaction.getAmount();
-      }
-    }
-
-    return total;
+    return summarizeTransactions((acc, bankTransaction) ->
+        bankTransaction.getDate().getMonth() == month ? acc + bankTransaction.getAmount() : acc);
   }
 
   public double calculateTotalForCategory(final String category) {
@@ -56,5 +59,9 @@ public class BankStatementProcessor {
     }
 
     return result;
+  }
+
+  public List<BankTransaction> findTransactionsGreaterThanEqual(final int amount) {
+    return findTransactions(bankTransaction -> bankTransaction.getAmount() >= amount);
   }
 }
