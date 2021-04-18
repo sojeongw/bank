@@ -3,17 +3,17 @@ package com.demo.bank;
 import java.time.Month;
 import java.util.List;
 
-public interface BankTransactionProcessor {
+interface CalculateTotalAmount {
 
   double calculateTotalAmount();
+}
+
+interface CalculateAverage {
+
+  double calculateAverage();
+}
+
+interface CalculateTotalInMonth {
 
   double calculateTotalInMonth(Month month);
-
-  double calculateTotalInJanuary();
-
-  double calculateAverageAmount();
-
-  double calculateAverageAmountForCategory(Category category);
-
-  List<BankTransaction> findTransactions(BankTransactionFilter bankTransactionFilter);
 }
