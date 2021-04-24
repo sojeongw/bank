@@ -16,10 +16,9 @@ public class OverlySpecificBankStatementValidator {
     this.amount = amount;
   }
 
-  public boolean validate()
-      throws DescriptionTooLongException, InvalidDateFormat, DateInTheFutureException, InvalidAmountException {
+  public boolean validate() {
     if (this.description.length() > 100) {
-      throw new DescriptionTooLongException();
+      throw new IllegalArgumentException("The description is too long");
     }
 
     final LocalDate parsedDate;
@@ -27,17 +26,17 @@ public class OverlySpecificBankStatementValidator {
     try {
       parsedDate = LocalDate.parse(this.date);
     } catch (DateTimeParseException e) {
-      throw new InvalidDateFormat();
+      throw new IllegalArgumentException("Invalid format for date", e);
     }
 
     if (parsedDate.isAfter(LocalDate.now())) {
-      throw new DateInTheFutureException();
+      throw new IllegalArgumentException("Date cannot be in the future");
     }
 
     try {
       Double.parseDouble(this.amount);
     } catch (NumberFormatException e) {
-      throw new InvalidDateFormat();
+      throw new IllegalArgumentException("Invalid format for amount", e);
     }
 
     return true;
