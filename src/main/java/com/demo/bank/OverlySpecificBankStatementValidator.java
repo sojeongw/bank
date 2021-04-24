@@ -16,29 +16,33 @@ public class OverlySpecificBankStatementValidator {
     this.amount = amount;
   }
 
-  public boolean validate() {
+  public Notification validate() {
+
+    final Notification notification = new Notification();
+
     if (this.description.length() > 100) {
-      throw new IllegalArgumentException("The description is too long");
+      notification.addError("The description is too long");
     }
 
     final LocalDate parsedDate;
 
     try {
       parsedDate = LocalDate.parse(this.date);
-    } catch (DateTimeParseException e) {
-      throw new IllegalArgumentException("Invalid format for date", e);
-    }
 
-    if (parsedDate.isAfter(LocalDate.now())) {
-      throw new IllegalArgumentException("Date cannot be in the future");
+      if (parsedDate.isAfter(LocalDate.now())) {
+        notification.addError("Date cannot be in the future");
+      }
+
+    } catch (DateTimeParseException e) {
+      notification.addError("Invalid format for date");
     }
 
     try {
       Double.parseDouble(this.amount);
     } catch (NumberFormatException e) {
-      throw new IllegalArgumentException("Invalid format for amount", e);
+      notification.addError("Invalid format for amount");
     }
 
-    return true;
+    return notification;
   }
 }
