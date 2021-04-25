@@ -4,8 +4,8 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.iteratrlearning</groupId>
-  <artifactId>shu_book</artifactId>
+  <groupId>org.demo</groupId>
+  <artifactId>original-source</artifactId>
   <version>1.0-SNAPSHOT</version>
 
   <build>

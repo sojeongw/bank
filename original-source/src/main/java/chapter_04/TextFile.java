@@ -1,6 +1,6 @@
 package chapter_04;
 
-import static com.iteratrlearning.shu_book.chapter_04.Attributes.PATH;
+import static chapter_04.Attributes.PATH;
 import static java.util.stream.Collectors.toList;
 
 import java.io.File;
