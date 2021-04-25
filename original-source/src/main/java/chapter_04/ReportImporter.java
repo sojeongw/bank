@@ -1,8 +1,8 @@
 package chapter_04;
 
-import static com.iteratrlearning.shu_book.chapter_04.Attributes.BODY;
-import static com.iteratrlearning.shu_book.chapter_04.Attributes.PATIENT;
-import static com.iteratrlearning.shu_book.chapter_04.Attributes.TYPE;
+import static chapter_04.Attributes.BODY;
+import static chapter_04.Attributes.PATIENT;
+import static chapter_04.Attributes.TYPE;
 
 import java.io.File;
 import java.io.IOException;

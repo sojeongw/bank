@@ -1,10 +1,9 @@
 package chapter_04;
 
-import static com.iteratrlearning.shu_book.chapter_04.Attributes.*;
-import static com.iteratrlearning.shu_book.chapter_04.Attributes.HEIGHT;
-import static com.iteratrlearning.shu_book.chapter_04.Attributes.PATH;
-import static com.iteratrlearning.shu_book.chapter_04.Attributes.TYPE;
-import static com.iteratrlearning.shu_book.chapter_04.Attributes.WIDTH;
+import static chapter_04.Attributes.HEIGHT;
+import static chapter_04.Attributes.PATH;
+import static chapter_04.Attributes.TYPE;
+import static chapter_04.Attributes.WIDTH;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
