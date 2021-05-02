@@ -12,6 +12,8 @@ repositories {
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    implementation 'org.bouncycastle:bcpkix-jdk15on:1.56'
+    testImplementation "org.mockito:mockito-core:3.+"
 }
 
 test {
