@@ -1,12 +1,16 @@
 package com.iteratrlearning.shu_book.chapter_06;
 
+import chapter_06.Position;
+import chapter_06.ReceiverEndPoint;
+import chapter_06.User;
+import chapter_06.UserRepository;
 import org.hamcrest.Matcher;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import static com.iteratrlearning.shu_book.chapter_06.FollowStatus.ALREADY_FOLLOWING;
+import static chapter_06.FollowStatus.ALREADY_FOLLOWING;
 import static com.iteratrlearning.shu_book.chapter_06.TestData.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;

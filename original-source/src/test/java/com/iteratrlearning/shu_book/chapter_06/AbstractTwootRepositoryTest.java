@@ -1,5 +1,9 @@
 package com.iteratrlearning.shu_book.chapter_06;
 
+import chapter_06.Position;
+import chapter_06.Twoot;
+import chapter_06.TwootQuery;
+import chapter_06.TwootRepository;
 import org.junit.After;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -7,7 +11,7 @@ import org.junit.Test;
 import java.util.Optional;
 import java.util.function.Consumer;
 
-import static com.iteratrlearning.shu_book.chapter_06.Position.INITIAL_POSITION;
+import static chapter_06.Position.INITIAL_POSITION;
 import static com.iteratrlearning.shu_book.chapter_06.TestData.USER_ID;
 import static com.iteratrlearning.shu_book.chapter_06.TestData.TWOOT;
 import static com.iteratrlearning.shu_book.chapter_06.TestData.TWOOT_2;

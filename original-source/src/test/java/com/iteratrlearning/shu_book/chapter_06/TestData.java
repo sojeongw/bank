@@ -1,8 +1,9 @@
 package com.iteratrlearning.shu_book.chapter_06;
 
-import java.nio.charset.StandardCharsets;
+import chapter_06.Position;
+import chapter_06.Twoot;
+import chapter_06.KeyGenerator;
 
-import static java.nio.charset.StandardCharsets.UTF_16;
 
 class TestData
 {

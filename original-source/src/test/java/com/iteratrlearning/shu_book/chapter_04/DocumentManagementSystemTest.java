@@ -1,15 +1,24 @@
 package com.iteratrlearning.shu_book.chapter_04;
 
-import org.junit.Test;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.List;
-
-import static com.iteratrlearning.shu_book.chapter_04.Attributes.*;
+import static chapter_04.Attributes.ADDRESS;
+import static chapter_04.Attributes.AMOUNT;
+import static chapter_04.Attributes.BODY;
+import static chapter_04.Attributes.HEIGHT;
+import static chapter_04.Attributes.PATIENT;
+import static chapter_04.Attributes.TYPE;
+import static chapter_04.Attributes.WIDTH;
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
+
+import chapter_04.Attributes;
+import chapter_04.Document;
+import chapter_04.DocumentManagementSystem;
+import chapter_04.UnknownFileTypeException;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.List;
+import org.junit.Test;
 
 // tag::eg_constants[]
 public class DocumentManagementSystemTest

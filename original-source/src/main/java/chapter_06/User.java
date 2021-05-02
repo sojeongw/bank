@@ -45,7 +45,7 @@ public class User {
         return id;
     }
 
-    boolean receiveTwoot(final Twoot twoot) {
+    public boolean receiveTwoot(final Twoot twoot) {
         if (isLoggedOn()) {
             receiverEndPoint.onTwoot(twoot);
             lastSeenPosition = twoot.getPosition();
@@ -68,7 +68,7 @@ public class User {
         }
     }
 
-    void onLogon(final ReceiverEndPoint receiverEndPoint) {
+    public void onLogon(final ReceiverEndPoint receiverEndPoint) {
         this.receiverEndPoint = receiverEndPoint;
     }
 

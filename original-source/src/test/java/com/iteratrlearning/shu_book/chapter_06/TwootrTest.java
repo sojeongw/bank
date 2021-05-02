@@ -1,14 +1,23 @@
 package com.iteratrlearning.shu_book.chapter_06;
 
-import com.iteratrlearning.shu_book.chapter_06.in_memory.InMemoryTwootRepository;
-import com.iteratrlearning.shu_book.chapter_06.in_memory.InMemoryUserRepository;
+import chapter_06.DeleteStatus;
+import chapter_06.FollowStatus;
+import chapter_06.Position;
+import chapter_06.ReceiverEndPoint;
+import chapter_06.RegistrationStatus;
+import chapter_06.SenderEndPoint;
+import chapter_06.Twoot;
+import chapter_06.TwootRepository;
+import chapter_06.Twootr;
+import chapter_06.UserRepository;
+import chapter_06.in_memory.InMemoryTwootRepository;
+import chapter_06.in_memory.InMemoryUserRepository;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Optional;
 
-import static com.iteratrlearning.shu_book.chapter_06.FollowStatus.ALREADY_FOLLOWING;
-import static com.iteratrlearning.shu_book.chapter_06.FollowStatus.SUCCESS;
+import static chapter_06.FollowStatus.ALREADY_FOLLOWING;
 import static com.iteratrlearning.shu_book.chapter_06.TestData.TWOOT;
 import static com.iteratrlearning.shu_book.chapter_06.TestData.twootAt;
 import static org.junit.Assert.*;
@@ -79,7 +88,7 @@ public class  TwootrTest
 
         final FollowStatus followStatus = endPoint.onFollow(TestData.OTHER_USER_ID);
 
-        assertEquals(SUCCESS, followStatus);
+        assertEquals(FollowStatus.SUCCESS, followStatus);
     }
     // end::shouldFollowValidUser[]
 

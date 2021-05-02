@@ -1,5 +1,9 @@
 package com.iteratrlearning.shu_book.chapter_05;
 
+import chapter_05.ConditionalAction;
+import chapter_05.Diagnosis;
+import chapter_05.Facts;
+import chapter_05.Inspector;
 import org.junit.Test;
 
 import java.util.List;

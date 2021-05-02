@@ -1,5 +1,8 @@
 package com.iteratrlearning.shu_book.chapter_02;
 
+import chapter_02.BankStatementCSVParser;
+import chapter_02.BankStatementParser;
+import chapter_02.BankTransaction;
 import org.junit.Assert;
 import org.junit.Test;
 
