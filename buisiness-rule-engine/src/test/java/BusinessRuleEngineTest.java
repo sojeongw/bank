@@ -104,12 +104,11 @@ class BusinessRuleEngineTest {
 
   @Test
   void shouldPerformAnActionWithBuilder() {
-    Rule rule = new RuleBuilder()
+    final Rule ruleSendEmailToSalesWhenCEO = RuleBuilder
         .when(facts -> "CEO".equals(facts.getFact("jobTitle")))
         .then(facts -> {
           var name = facts.getFact("name");
           Mailer.sendEmail("sales@company.com", "Relevant customer: " + name);
-        })
-        .createRule();
+        });
   }
 }
