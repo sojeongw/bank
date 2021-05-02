@@ -1,6 +1,7 @@
 import java.util.Objects;
 
 public class SenderEndPoint {
+
   private final User user;
   private final Twootr twootr;
 

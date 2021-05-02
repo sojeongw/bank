@@ -50,7 +50,7 @@ public class TwootrTest {
 
   @Test
   void verifyReceiverEndPoint() {
-    Twoot twoot = new Twoot("id", "sender-id", "content", new Position());
+    Twoot twoot = new Twoot("id", "sender-id", "content");
 
     verify(receiverEndPoint).onTwoot(twoot);
   }
