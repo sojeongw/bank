@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 public class TwootrTest {
 
+  // mockReceiverEndPoint
   private final ReceiverEndPoint receiverEndPoint = mock(ReceiverEndPoint.class);
 
   private Twootr twootr;
