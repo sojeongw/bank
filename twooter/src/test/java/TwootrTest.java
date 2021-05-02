@@ -8,6 +8,9 @@ public class TwootrTest {
 
   private final ReceiverEndPoint receiverEndPoint = mock(ReceiverEndPoint.class);
 
+  private Twootr twootr;
+  private SenderEndPoint endPoint;
+
   @Test
   public void shouldBeAbleToAuthenticateUser() {
     // 유효 사용자의 로그온 메시지 수신
@@ -19,9 +22,27 @@ public class TwootrTest {
 
   @Test
   public void shouldNotAuthenticateUserWithWrongPassword() {
-    final Twootr twootr = new Twootr();
-    final Optional<SenderEndPoint> endPoint = twootr.onLogon(TestData.USER_ID, "bad password", receiverEndPoint);
+    final Optional<SenderEndPoint> endPoint = twootr
+        .onLogon(TestData.USER_ID, "bad password", receiverEndPoint);
 
     assertFalse(endPoint.isPresent());
+  }
+
+  @Test
+  void shouldFollowValidUser() {
+    logon();
+    final FollowStatus followStatus = endPoint.onFollow(TestData.OTHER_USER_ID);
+    assertEquals(FollowStatus.SUCCESS, followStatus);
+  }
+
+  private void logon() {
+    this.endPoint = logon(TestData.USER_ID, receiverEndPoint);
+  }
+
+  private SenderEndPoint logon(final String userId, final ReceiverEndPoint receiverEndPoint) {
+    final Optional<SenderEndPoint> endPoint = twootr
+        .onLogon(userId, TestData.PASSWORD, receiverEndPoint);
+    assertTrue(endPoint.isPresent(), "Failed to logon");
+    return endPoint.get();
   }
 }
