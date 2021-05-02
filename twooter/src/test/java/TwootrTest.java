@@ -1,5 +1,6 @@
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 import java.util.Optional;
 import org.junit.jupiter.api.Test;
@@ -45,6 +46,13 @@ public class TwootrTest {
     final FollowStatus followStatus = endPoint.onFollow(TestData.OTHER_USER_ID);
 
     assertEquals(FollowStatus.ALREADY_FOLLOWING, followStatus);
+  }
+
+  @Test
+  void verifyReceiverEndPoint() {
+    Twoot twoot = new Twoot("id", "sender-id", "content", new Position());
+
+    verify(receiverEndPoint).onTwoot(twoot);
   }
 
   private void logon() {
