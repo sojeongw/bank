@@ -3,24 +3,20 @@ import java.util.List;
 
 public class BusinessRuleEngine {
 
-  private final List<Action> actions;
+  private final List<Rule> rules;
   private final Facts facts;
 
   public BusinessRuleEngine(final Facts facts) {
-    this.actions = new ArrayList<>();
+    this.rules = new ArrayList<>();
     this.facts = facts;
   }
 
-  public void addAction(final Action action) {
-    this.actions.add(action);
-  }
-
-  public int count() {
-    return this.actions.size();
+  public void addRule(final Rule rule) {
+    this.rules.add(rule);
   }
 
   public void run() {
-    this.actions.forEach(action -> action.execute(facts));
+    this.rules.forEach(rule -> rule.perform(facts));
   }
 
 }
