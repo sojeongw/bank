@@ -36,4 +36,19 @@ class BusinessRuleEngineTest {
     // then
     verify(mockAction).execute();
   }
+
+  @Test
+  void addActionWithAnonymousClass() {
+    final BusinessRuleEngine businessRuleEngine = new BusinessRuleEngine();
+    final Customer customer = new Customer("Mark", "CEO");
+
+    businessRuleEngine.addAction(new Action() {
+      @Override
+      public void execute() {
+        if("CEO".equals(customer.getJobTitle())) {
+          Mailer.sendEmail("sales@company.com", "Relevant customer: " + customer);
+        }
+      }
+    });
+  }
 }
