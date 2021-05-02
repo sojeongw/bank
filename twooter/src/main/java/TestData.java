@@ -12,7 +12,7 @@ public class TestData {
 
   static Twoot twootAt(final String id, final Position position)
   {
-    return new Twoot(id, OTHER_USER_ID, TWOOT);
+    return new Twoot(id, OTHER_USER_ID, TWOOT, position);
   }
 
 }

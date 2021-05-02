@@ -1,4 +1,6 @@
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
@@ -50,9 +52,24 @@ public class TwootrTest {
 
   @Test
   void verifyReceiverEndPoint() {
-    Twoot twoot = new Twoot("id", "sender-id", "content");
+    Twoot twoot = new Twoot("id", "sender-id", "content", new Position());
 
     verify(receiverEndPoint).onTwoot(twoot);
+  }
+
+  @Test
+  void shouldReceiveTwootsFromFollowedUser() {
+    final String id = "1";
+
+    logon();
+
+    endPoint.onFollow(TestData.OTHER_USER_ID);
+
+    final SenderEndPoint otherEndPoint = otherLogon();
+    otherEndPoint.onSendTwoot(id, TestData.TWOOT);
+
+    verify(twootRepository).add(id, TestData.OTHER_USER_ID, TestData.TWOOT);
+    verify(receiverEndPoint).onTwoot(new Twoot(id, TestData.OTHER_USER_ID, TestData.TWOOT, new Position(0)));
   }
 
   private void logon() {
@@ -64,5 +81,10 @@ public class TwootrTest {
         .onLogon(userId, TestData.PASSWORD, receiverEndPoint);
     assertTrue(endPoint.isPresent(), "Failed to logon");
     return endPoint.get();
+  }
+
+  private SenderEndPoint otherLogon()
+  {
+    return logon(TestData.OTHER_USER_ID, mock(ReceiverEndPoint.class));
   }
 }

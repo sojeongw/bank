@@ -18,4 +18,10 @@ public class SenderEndPoint {
 
     return twootr.onFollow(user, userIdToFollow);
   }
+
+  public Position onSendTwoot(final String id, final String content) {
+    Objects.requireNonNull(content, "content");
+
+    return null;
+  }
 }
