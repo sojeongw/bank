@@ -51,4 +51,16 @@ class BusinessRuleEngineTest {
       }
     });
   }
+
+  @Test
+  void addActionWithLambda() {
+    final BusinessRuleEngine businessRuleEngine = new BusinessRuleEngine();
+    final Customer customer = new Customer("Mark", "CEO");
+
+    businessRuleEngine.addAction(() -> {
+      if("CEO".equals(customer.getJobTitle())) {
+        Mailer.sendEmail("sales@company.com", "Relevant customer: " + customer);
+      }
+    });
+  }
 }
