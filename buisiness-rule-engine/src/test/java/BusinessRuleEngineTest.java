@@ -7,17 +7,20 @@ class BusinessRuleEngineTest {
 
   @Test
   void shouldHaveNoRulesInitially() {
-    final BusinessRuleEngine businessRuleEngine = new BusinessRuleEngine();
+    final Facts mockFacts = mock(Facts.class);
+    final BusinessRuleEngine businessRuleEngine = new BusinessRuleEngine(mockFacts);
 
     assertEquals(0, businessRuleEngine.count());
   }
 
   @Test
   void shouldAddTwoActions() {
-    final BusinessRuleEngine businessRuleEngine = new BusinessRuleEngine();
+    final Facts mockFacts = mock(Facts.class);
+    final Action mockAction = mock(Action.class);
+    final BusinessRuleEngine businessRuleEngine = new BusinessRuleEngine(mockFacts);
 
-    businessRuleEngine.addAction(() -> {});
-    businessRuleEngine.addAction(() -> {});
+    businessRuleEngine.addAction(mockAction);
+    businessRuleEngine.addAction(mockAction);
 
     assertEquals(2, businessRuleEngine.count());
   }
@@ -25,7 +28,8 @@ class BusinessRuleEngineTest {
   @Test
   void shouldExecuteOneAction() {
     // given
-    final BusinessRuleEngine businessRuleEngine = new BusinessRuleEngine();
+    final Facts mockFacts = mock(Facts.class);
+    final BusinessRuleEngine businessRuleEngine = new BusinessRuleEngine(mockFacts);
     final Action mockAction = mock(Action.class);
 
     businessRuleEngine.addAction(mockAction);
@@ -34,32 +38,38 @@ class BusinessRuleEngineTest {
     businessRuleEngine.run();
 
     // then
-    verify(mockAction).execute();
+    verify(mockAction).execute(mockFacts);
   }
 
   @Test
-  void addActionWithAnonymousClass() {
-    final BusinessRuleEngine businessRuleEngine = new BusinessRuleEngine();
-    final Customer customer = new Customer("Mark", "CEO");
+  void shouldPerformAnActionWithAnonymousClass() {
+    final Facts mockFacts = mock(Facts.class);
+    final BusinessRuleEngine businessRuleEngine = new BusinessRuleEngine(mockFacts);
 
     businessRuleEngine.addAction(new Action() {
       @Override
-      public void execute() {
-        if("CEO".equals(customer.getJobTitle())) {
-          Mailer.sendEmail("sales@company.com", "Relevant customer: " + customer);
+      public void execute(final Facts facts) {
+        final String jobTitle = facts.getFact("jobTitle");
+
+        if("CEO".equals(jobTitle)) {
+          final String name = facts.getFact("name");
+          Mailer.sendEmail("sales@company.com", "Relevant customer: " + name);
         }
       }
     });
   }
 
   @Test
-  void addActionWithLambda() {
-    final BusinessRuleEngine businessRuleEngine = new BusinessRuleEngine();
-    final Customer customer = new Customer("Mark", "CEO");
+  void shouldPerformAnActionWithLambda() {
+    final Facts mockFacts = mock(Facts.class);
+    final BusinessRuleEngine businessRuleEngine = new BusinessRuleEngine(mockFacts);
 
-    businessRuleEngine.addAction(() -> {
-      if("CEO".equals(customer.getJobTitle())) {
-        Mailer.sendEmail("sales@company.com", "Relevant customer: " + customer);
+    businessRuleEngine.addAction(facts -> {
+      final String jobTitle = facts.getFact("jobTitle");
+
+      if("CEO".equals(jobTitle)) {
+        final String name = facts.getFact("name");
+        Mailer.sendEmail("sales@company.com", "Relevant customer: " + name);
       }
     });
   }
