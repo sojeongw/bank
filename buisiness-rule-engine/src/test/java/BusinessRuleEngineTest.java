@@ -101,4 +101,15 @@ class BusinessRuleEngineTest {
 
     final Rule rule = new DefaultRule(condition, action);
   }
+
+  @Test
+  void shouldPerformAnActionWithBuilder() {
+    Rule rule = new RuleBuilder()
+        .when(facts -> "CEO".equals(facts.getFact("jobTitle")))
+        .then(facts -> {
+          var name = facts.getFact("name");
+          Mailer.sendEmail("sales@company.com", "Relevant customer: " + name);
+        })
+        .createRule();
+  }
 }
