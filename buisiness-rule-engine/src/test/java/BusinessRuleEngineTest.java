@@ -49,10 +49,10 @@ class BusinessRuleEngineTest {
     businessRuleEngine.addAction(new Action() {
       @Override
       public void execute(final Facts facts) {
-        final String jobTitle = facts.getFact("jobTitle");
+        var jobTitle = facts.getFact("jobTitle");
 
         if("CEO".equals(jobTitle)) {
-          final String name = facts.getFact("name");
+          var name = facts.getFact("name");
           Mailer.sendEmail("sales@company.com", "Relevant customer: " + name);
         }
       }
@@ -65,10 +65,10 @@ class BusinessRuleEngineTest {
     final BusinessRuleEngine businessRuleEngine = new BusinessRuleEngine(mockFacts);
 
     businessRuleEngine.addAction(facts -> {
-      final String jobTitle = facts.getFact("jobTitle");
+      var jobTitle = facts.getFact("jobTitle");
 
       if("CEO".equals(jobTitle)) {
-        final String name = facts.getFact("name");
+        var name = facts.getFact("name");
         Mailer.sendEmail("sales@company.com", "Relevant customer: " + name);
       }
     });
