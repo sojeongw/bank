@@ -90,4 +90,15 @@ class BusinessRuleEngineTest {
 
     verify(mockAction).execute(mockFacts);
   }
+
+  @Test
+  void shouldPerformAnActionWithInterface() {
+    final Condition condition = (Facts facts) -> "CEO".equals(facts.getFact("jobTitle"));
+    final Action action = (Facts facts) -> {
+      var name = facts.getFact("name");
+      Mailer.sendEmail("sales@company.com", "Relevant customer: " + name);
+    };
+
+    final Rule rule = new DefaultRule(condition, action);
+  }
 }
